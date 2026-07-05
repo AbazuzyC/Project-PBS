@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ui:UXML
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ui="UnityEngine.UIElements"
+    xmlns:uie="UnityEditor.UIElements"
+    xsi:noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd"
+>
+    <!-- Link the Mode Selection USS stylesheet -->
+    <ui:Style src="ModeSelectionUI.uss" />
+
+    <!-- Full screen container -->
+    <ui:VisualElement name="mode-selection-root" class="screen-root">
+        
+        <!-- Header Title -->
+        <ui:Label name="screen-title" text="PILIH MODE PERMAINAN" class="title-text" />
+
+        <!-- Cards Row Container -->
+        <ui:VisualElement class="cards-row">
+            
+            <!-- Card 1: GAME AR -->
+            <ui:VisualElement class="mode-card">
+                <!-- Wooden Header Banner (Overlapping the top) -->
+                <ui:Label text="GAME AR" class="card-wood-header" />
+                
+                <!-- Placeholder Image (Mobile phone preview) -->
+                <ui:VisualElement name="ar-placeholder" class="mode-image-preview ar-preview" />
+                
+                <!-- Play Button (Overlapping the bottom) -->
+                <ui:Button name="ar-play-button" text="MAIN" class="card-wood-btn" />
+            </ui:VisualElement>
+
+            <!-- Card 2: KUIS -->
+            <ui:VisualElement class="mode-card">
+                <!-- Wooden Header Banner -->
+                <ui:Label text="KUIS" class="card-wood-header" />
+                
+                <!-- Placeholder Image -->
+                <ui:VisualElement name="quiz-placeholder" class="mode-image-preview quiz-preview" />
+                
+                <!-- Play Button -->
+                <ui:Button name="quiz-play-button" text="MAIN" class="card-wood-btn" />
+            </ui:VisualElement>
+
+            <!-- Card 3: MATERI -->
+            <ui:VisualElement class="mode-card">
+                <!-- Wooden Header Banner -->
+                <ui:Label text="MATERI" class="card-wood-header" />
+                
+                <!-- Placeholder Image -->
+                <ui:VisualElement name="materi-placeholder" class="mode-image-preview materi-preview" />
+                
+                <!-- Study Button -->
+                <ui:Button name="materi-study-button" text="BELAJAR" class="card-wood-btn" />
+            </ui:VisualElement>
+
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
