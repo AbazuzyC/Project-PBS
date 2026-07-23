@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a0a9ba25ce85a544a9a8d34f3c67830, type: 3}
+  m_Name: Kupu Kupu
+  m_EditorClassIdentifier: Assembly-CSharp::QuizScriptable
+  categoryName: Belalang
+  questions:
+  - questionText: Berapa banyak sayap kupu kupu
+    questionImage: {fileID: 21300000, guid: 6667b7e4ef0e0d3409fcf2a860be5c5d, type: 3}
+    options:
+    - 2
+    - b
+    - c
+    - d
+    correctAnswerIndex: 0
+  - questionText: Sebeleum jadi kupu kup dia apa dulu
+    questionImage: {fileID: 21300000, guid: e7595f8815dd651439746ccc60108ac8, type: 3}
+    options:
+    - Ulat
+    - b
+    - c
+    - d
+    correctAnswerIndex: 1
