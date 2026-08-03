@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 
-public class SettingsUi : MonoBehaviour
+public class SettingsUI : MonoBehaviour
 {
     public GameObject settingsPanel;
     [SerializeField] private AudioMixer _audioMixer;
