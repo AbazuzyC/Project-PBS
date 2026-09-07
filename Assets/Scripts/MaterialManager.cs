@@ -41,12 +41,34 @@ public class MaterialManager : MonoBehaviour
         if (pData.pageImage != null) 
         {
             pageImage.sprite = pData.pageImage;
+            
+            // Pastikan gambar tidak stretch
+            pageImage.preserveAspect = true;
+            
+            // Hitung ukuran agar maksimal 200x100 dan rasio tetap terjaga
+            float originalWidth = pData.pageImage.rect.width;
+            float originalHeight = pData.pageImage.rect.height;
+            float ratio = originalWidth / originalHeight;
+
+            float maxWidth = 200f;
+            float maxHeight = 100f;
+            
+            float targetWidth = maxWidth;
+            float targetHeight = targetWidth / ratio;
+
+            if (targetHeight > maxHeight)
+            {
+                targetHeight = maxHeight;
+                targetWidth = targetHeight * ratio;
+            }
+
+            pageImage.rectTransform.sizeDelta = new Vector2(targetWidth, targetHeight);
+
             pageImage.gameObject.SetActive(true);
         } 
         else 
         {
             // Jika gambar tidak diisi di Inspector, matikan objek gambarnya.
-            // (Pastikan lu pakai Horizontal Layout Group di Parent UI-nya biar teks otomatis melebar saat gambar mati)
             pageImage.gameObject.SetActive(false);
         }
 

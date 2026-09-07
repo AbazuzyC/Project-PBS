@@ -27,12 +27,12 @@ public class UIPagination : MonoBehaviour
             if (i == 0)
             {
                 // Page pertama ada di tengah
-                pages[i].anchoredPosition = Vector2.zero;
+                pages[i].anchoredPosition = new Vector2(0, pages[i].anchoredPosition.y);
             }
             else
             {
                 // Page lainnya ditaruh di sebelah kanan (luar layar)
-                pages[i].anchoredPosition = new Vector2(pageSpacing, 0);
+                pages[i].anchoredPosition = new Vector2(pageSpacing, pages[i].anchoredPosition.y);
             }
         }
         
@@ -52,7 +52,7 @@ public class UIPagination : MonoBehaviour
             currentPageIndex++;
             
             // Posisikan page baru di kanan sebelum di-slide ke tengah
-            pages[currentPageIndex].anchoredPosition = new Vector2(pageSpacing, 0); 
+            pages[currentPageIndex].anchoredPosition = new Vector2(pageSpacing, pages[currentPageIndex].anchoredPosition.y); 
             // Geser page baru ke tengah
             pages[currentPageIndex].DOAnchorPosX(0, transitionDuration).SetEase(Ease.InOutQuad);
             
@@ -70,7 +70,7 @@ public class UIPagination : MonoBehaviour
             currentPageIndex--;
             
             // Posisikan page baru di kiri sebelum di-slide ke tengah
-            pages[currentPageIndex].anchoredPosition = new Vector2(-pageSpacing, 0); 
+            pages[currentPageIndex].anchoredPosition = new Vector2(-pageSpacing, pages[currentPageIndex].anchoredPosition.y); 
             // Geser page baru ke tengah
             pages[currentPageIndex].DOAnchorPosX(0, transitionDuration).SetEase(Ease.InOutQuad);
             
