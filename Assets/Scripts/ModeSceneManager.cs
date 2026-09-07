@@ -7,9 +7,13 @@ public class ModeSceneManager : MonoBehaviour
     [SerializeField] private UIDocument modeSelectionUIDocument;
 
     [Header("Scene Configuration")]
-    [SerializeField] private string arSceneName = "SampleScene";
+    [SerializeField] private string arSceneName = "ARScene";
     [SerializeField] private string quizSceneName = "SampleScene";
     [SerializeField] private string materiSceneName = "SampleScene";
+
+    [Header("Permission Handler")]
+    [Tooltip("Assign the GameObject with VuforiaPermissionHandler. If not assigned, will try to find one.")]
+    [SerializeField] private VuforiaPermissionHandler permissionHandler;
 
     private void OnEnable()
     {
@@ -66,8 +70,24 @@ public class ModeSceneManager : MonoBehaviour
 
     private void OnARPlayClicked()
     {
-        Debug.Log("ModeSceneManager: Transitioning to AR scene: " + arSceneName);
-        SceneManager.LoadScene(arSceneName);
+        Debug.Log("ModeSceneManager: AR button clicked, checking permissions...");
+        
+        // Try to find the permission handler if not assigned
+        if (permissionHandler == null)
+        {
+            permissionHandler = FindFirstObjectByType<VuforiaPermissionHandler>();
+        }
+
+        if (permissionHandler != null)
+        {
+            permissionHandler.RequestCameraAndLoadAR();
+        }
+        else
+        {
+            // Fallback: load directly if no permission handler found
+            Debug.LogWarning("ModeSceneManager: No VuforiaPermissionHandler found, loading AR scene directly.");
+            SceneManager.LoadScene(arSceneName);
+        }
     }
 
     private void OnQuizPlayClicked()

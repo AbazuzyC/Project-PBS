@@ -38,6 +38,29 @@ public class QuizManager : MonoBehaviour
         // Atur gambar
         if (qData.questionImage != null) {
             questionImage.sprite = qData.questionImage;
+            
+            // Pastikan gambar tidak stretch
+            questionImage.preserveAspect = true;
+            
+            // Hitung ukuran agar maksimal 200x100 dan rasio tetap terjaga
+            float originalWidth = qData.questionImage.rect.width;
+            float originalHeight = qData.questionImage.rect.height;
+            float ratio = originalWidth / originalHeight;
+
+            float maxWidth = 200f;
+            float maxHeight = 100f;
+            
+            float targetWidth = maxWidth;
+            float targetHeight = targetWidth / ratio;
+
+            if (targetHeight > maxHeight)
+            {
+                targetHeight = maxHeight;
+                targetWidth = targetHeight * ratio;
+            }
+
+            questionImage.rectTransform.sizeDelta = new Vector2(targetWidth, targetHeight);
+
             questionImage.gameObject.SetActive(true);
         } else {
             questionImage.gameObject.SetActive(false);

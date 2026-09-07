@@ -5,28 +5,64 @@ using UnityEngine.UI;
 
 public class SettingsUi : MonoBehaviour
 {
-    public GameObject settingsPanel;
+    [Header("Audio")]
     [SerializeField] private AudioMixer _audioMixer;
-    [SerializeField] private Slider _musicSlider; 
-    [SerializeField] private Slider _sfxSlider;
+    
+    [Header("UI Toggles")]
+    [SerializeField] private Toggle _musicToggle;
+    [SerializeField] private Toggle _sfxToggle;
 
-    void Awake()
+    void Start()
     {
-        SetMusicVolume();
-        SetSFXVolume();
+        // Muat pengaturan yang tersimpan (1 untuk nyala, 0 untuk mati)
+        bool isMusicOn = PlayerPrefs.GetInt("MusicOn", 1) == 1;
+        bool isSfxOn = PlayerPrefs.GetInt("SFXOn", 1) == 1;
+
+        // Set state awal toggle dan tambahkan event listener
+        if (_musicToggle != null)
+        {
+            // Set isOn tanpa trigger event (untuk inisialisasi)
+            _musicToggle.SetIsOnWithoutNotify(isMusicOn);
+            _musicToggle.onValueChanged.AddListener(SetMusic);
+        }
+
+        if (_sfxToggle != null)
+        {
+            _sfxToggle.SetIsOnWithoutNotify(isSfxOn);
+            _sfxToggle.onValueChanged.AddListener(SetSFX);
+        }
+
+        // Terapkan pengaturan audio awal
+        ApplyMusicSettings(isMusicOn);
+        ApplySFXSettings(isSfxOn);
     }
-    public void SetMusicVolume()
+
+    public void SetMusic(bool isOn)
     {
-        float volume = _musicSlider.value;
-        float normalized = Mathf.Max(volume, 0.0001f);
-        _audioMixer.SetFloat("MusicVolume", Mathf.Log10(normalized) * 20);
-        PlayerPrefs.SetFloat("Music", volume);
+        PlayerPrefs.SetInt("MusicOn", isOn ? 1 : 0);
+        ApplyMusicSettings(isOn);
     }
-    public void SetSFXVolume()
+
+    public void SetSFX(bool isOn)
     {
-        float volume = _sfxSlider.value;
-        float normalized = Mathf.Max(volume, 0.0001f);
-        _audioMixer.SetFloat("SFXVolume", Mathf.Log10(normalized) * 20);
-        PlayerPrefs.SetFloat("SFX", volume);
+        PlayerPrefs.SetInt("SFXOn", isOn ? 1 : 0);
+        ApplySFXSettings(isOn);
+    }
+
+    private void ApplyMusicSettings(bool isOn)
+    {
+        if (_audioMixer != null)
+        {
+            // Nilai volume mixer biasanya 0 (normal) hingga -80 (mute)
+            _audioMixer.SetFloat("MusicVolume", isOn ? 0f : -80f);
+        }
+    }
+
+    private void ApplySFXSettings(bool isOn)
+    {
+        if (_audioMixer != null)
+        {
+            _audioMixer.SetFloat("SFXVolume", isOn ? 0f : -80f);
+        }
     }
 }

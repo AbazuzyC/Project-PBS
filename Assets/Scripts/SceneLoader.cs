@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 public class SceneLoader : MonoBehaviour
 {
     [Header("Default Scene Configuration")]
-    [SerializeField] private string arSceneName = "SampleScene";
+    [SerializeField] private string arSceneName = "ARScene";
     [SerializeField] private string quizSceneName = "SampleScene";
     [SerializeField] private string materiSceneName = "SampleScene";
 
