@@ -5,8 +5,7 @@ public class SceneLoader : MonoBehaviour
 {
     [Header("Default Scene Configuration")]
     [SerializeField] private string arSceneName = "ARScene";
-    [SerializeField] private string quizSceneName = "SampleScene";
-    [SerializeField] private string materiSceneName = "SampleScene";
+    [SerializeField] private string mainMenuSceneName = "MainMenu";
 
     /// <summary>
     /// Loads a scene by its exact name.
@@ -33,18 +32,10 @@ public class SceneLoader : MonoBehaviour
     }
 
     /// <summary>
-    /// Loads the Quiz scene configured in the inspector.
+    /// Loads the Main Menu scene configured in the inspector.
     /// </summary>
-    public void LoadQuizScene()
+    public void LoadMainMenuScene()
     {
-        LoadSceneByName(quizSceneName);
-    }
-
-    /// <summary>
-    /// Loads the Material/Lesson scene configured in the inspector.
-    /// </summary>
-    public void LoadMateriScene()
-    {
-        LoadSceneByName(materiSceneName);
+        LoadSceneByName(mainMenuSceneName);
     }
 }
