@@ -1053,6 +1053,7 @@ GameObject:
   - component: {fileID: 377749096}
   - component: {fileID: 377749098}
   - component: {fileID: 377749097}
+  - component: {fileID: 377749099}
   m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
@@ -1121,6 +1122,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 377749095}
   m_CullTransparentMesh: 1
+--- !u!114 &377749099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 377749095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16e16e295b639154abfd22009c59d356, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIAlphaController
+  targetImage: {fileID: 377749097}
+  target3DObjects:
+  - {fileID: 1205645427}
+  - {fileID: 1973668621}
+  - {fileID: 174953955}
+  - {fileID: 438189166}
+  - {fileID: 1165520655}
+  transparentAlpha: 0.5
+  opaqueAlpha: 1
+  fadeSpeed: 10
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -2249,10 +2272,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 222654071}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 254.09904, y: -198.07205}
+  m_SizeDelta: {x: 508.1981, y: 396.1441}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1099354942
 MonoBehaviour:
@@ -3118,7 +3141,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1729306472
 MonoBehaviour:
   m_ObjectHideFlags: 0
