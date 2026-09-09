@@ -39,23 +39,51 @@ public class FlashlightController : MonoBehaviour
     {
         Debug.Log($"[FlashlightController] Menerima perintah untuk: {(turnOn ? "MENYALAKAN" : "MEMATIKAN")} Flashlight");
 
-        // Jika testing di Editor, catat bahwa webcam PC biasanya tidak support flashlight
 #if UNITY_EDITOR
         Debug.Log("[FlashlightController] (Info) Sedang testing di Editor. Sebagian besar webcam PC TIDAK memiliki flashlight, namun logic script tetap berjalan.");
 #endif
 
-        // Menggunakan reflection agar tidak error meskipun versi Vuforia berbeda
         string[] assemblyNames = new string[]
         {
-            "Vuforia.Unity.Engine",
             "VuforiaEngine",
-            "VuforiaScripts"
+            "VuforiaScripts",
+            "Vuforia.Unity.Engine"
         };
 
         foreach (string asmName in assemblyNames)
         {
             try 
             {
+                // Coba API Vuforia 10+ (VuforiaBehaviour.Instance.CameraDevice.SetFlash)
+                System.Type behaviourType = System.Type.GetType("Vuforia.VuforiaBehaviour, " + asmName);
+                if (behaviourType != null)
+                {
+                    var instanceProp = behaviourType.GetProperty("Instance");
+                    if (instanceProp != null)
+                    {
+                        var behaviourInstance = instanceProp.GetValue(null);
+                        if (behaviourInstance != null)
+                        {
+                            var cameraDeviceProp = behaviourType.GetProperty("CameraDevice");
+                            if (cameraDeviceProp != null)
+                            {
+                                var cameraDeviceInstance = cameraDeviceProp.GetValue(behaviourInstance);
+                                if (cameraDeviceInstance != null)
+                                {
+                                    var setFlashMethod = cameraDeviceInstance.GetType().GetMethod("SetFlash", new System.Type[] { typeof(bool) });
+                                    if (setFlashMethod != null)
+                                    {
+                                        bool success = (bool)setFlashMethod.Invoke(cameraDeviceInstance, new object[] { turnOn });
+                                        Debug.Log($"[FlashlightController] Flashlight berhasil via Vuforia 10+ API. Status: {(turnOn ? "ON" : "OFF")} | Success: {success}");
+                                        return;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                // Fallback: Coba API Vuforia lama (CameraDevice.Instance.SetFlashTorchMode)
                 System.Type cameraDeviceType = System.Type.GetType("Vuforia.CameraDevice, " + asmName);
                 if (cameraDeviceType != null)
                 {
@@ -69,8 +97,8 @@ public class FlashlightController : MonoBehaviour
                             if (method != null)
                             {
                                 bool success = (bool)method.Invoke(instance, new object[] { turnOn });
-                                Debug.Log($"[FlashlightController] Flashlight berhasil dieksekusi via Vuforia API. Status: {(turnOn ? "ON" : "OFF")} | Success (didukung oleh hardware): {success}");
-                                return; // Keluar dari loop jika berhasil
+                                Debug.Log($"[FlashlightController] Flashlight berhasil dieksekusi via Vuforia Legacy API. Status: {(turnOn ? "ON" : "OFF")} | Success: {success}");
+                                return; 
                             }
                         }
                     }
@@ -82,6 +110,6 @@ public class FlashlightController : MonoBehaviour
             }
         }
         
-        Debug.LogWarning("[FlashlightController] Gagal menyalakan/mematikan flashlight. Pastikan kamera Vuforia sudah aktif di Scene AR ini.");
+        Debug.LogWarning("[FlashlightController] Gagal menyalakan/mematikan flashlight. Pastikan Vuforia sudah jalan dan API-nya sesuai.");
     }
 }
