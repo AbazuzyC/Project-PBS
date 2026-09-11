@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using DG.Tweening;
 
 public class ARInfoManager : MonoBehaviour
 {
@@ -42,8 +43,15 @@ public class ARInfoManager : MonoBehaviour
         currentTopic = topic;
         currentPageIndex = 0;
 
-        if (arInfoPanel != null) arInfoPanel.SetActive(true);
-
+        if (arInfoPanel != null)
+        {
+            arInfoPanel.SetActive(true);
+            
+            // Pop out animation with DOTween
+            arInfoPanel.transform.DOKill(); // Hentikan animasi sebelumnya jika ada
+            arInfoPanel.transform.localScale = Vector3.zero;
+            arInfoPanel.transform.DOScale(Vector3.one, 0.4f).SetEase(Ease.OutBack);
+        }
 
         UpdatePageUI();
     }
@@ -53,11 +61,17 @@ public class ARInfoManager : MonoBehaviour
     /// </summary>
     public void HideARInfo()
     {
+        currentTopic = null;
+        
         if (arInfoPanel != null)
         {
-            arInfoPanel.SetActive(false);
+            // Shrink animation with DOTween sebelum di non-aktifkan
+            arInfoPanel.transform.DOKill();
+            arInfoPanel.transform.DOScale(Vector3.zero, 0.25f).SetEase(Ease.InBack).OnComplete(() => 
+            {
+                arInfoPanel.SetActive(false);
+            });
         }
-        currentTopic = null;
     }
 
     private void UpdatePageUI()
