@@ -21,9 +21,15 @@ public class DeveloperProfileUI : MonoBehaviour
     public GameObject profilePanel;
     public GameObject nextButton;
 
-    void Start()
+    void OnEnable()
     {
+        _indexNow = 0;
         ShowProfile();
+    }
+    void OnDisable() 
+    {
+        if(profilePanel.activeSelf)
+            profilePanel.SetActive(false);    
     }
     void ShowProfile()
     {
@@ -36,7 +42,7 @@ public class DeveloperProfileUI : MonoBehaviour
         _txtDescription.text = data.description;
 
         if(nextButton != null)
-            nextButton.SetActive(_indexNow <  developerList.Length - 1);
+            nextButton.SetActive(_indexNow < developerList.Length - 1);
     }
     void SwitchPanel()
     {
@@ -52,7 +58,6 @@ public class DeveloperProfileUI : MonoBehaviour
             ShowProfile();
         }
     }
-
     public void Prev()
     {
         if(_indexNow == 0)
