@@ -38,4 +38,17 @@ public class SceneLoader : MonoBehaviour
     {
         LoadSceneByName(mainMenuSceneName);
     }
+
+    /// <summary>
+    /// Closes the application or exits Play Mode if running in the Unity Editor.
+    /// </summary>
+    public void QuitGame()
+    {
+        Debug.Log("Scene Loader: Quitting application...");
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
+    }
 }
