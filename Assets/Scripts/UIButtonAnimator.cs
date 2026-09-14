@@ -11,6 +11,10 @@ public class UIButtonAnimator : MonoBehaviour, IPointerDownHandler, IPointerUpHa
     public float duration = 0.15f;
     public Ease easeType = Ease.OutQuad;
 
+    [Header("Audio Settings")]
+    [Tooltip("Putar suara klik otomatis dari AudioManager saat tombol ditekan")]
+    public bool playClickSound = true;
+
     private Vector3 originalScale;
 
     private void Awake()
@@ -28,6 +32,11 @@ public class UIButtonAnimator : MonoBehaviour, IPointerDownHandler, IPointerUpHa
 
     public void OnPointerDown(PointerEventData eventData)
     {
+        if (playClickSound && AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlayClick();
+        }
+
         // Hentikan animasi sebelumnya agar tidak bertumpuk
         transform.DOKill();
         // Animasi mengecil

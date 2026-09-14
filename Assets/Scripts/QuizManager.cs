@@ -308,6 +308,11 @@ public class QuizManager : MonoBehaviour
             {
                 quizConfirmationPanel.SetActive(true);
 
+                if (AudioManager.Instance != null)
+                {
+                    AudioManager.Instance.PlayPop();
+                }
+
                 // Cari object "Frame" di dalam panel konfirmasi biar animasinya cuma di frame (nggak ikut nge-scale background gelap)
                 Transform frame = quizConfirmationPanel.transform.Find("Frame");
                 if (frame != null)
@@ -367,6 +372,11 @@ public class QuizManager : MonoBehaviour
         if (selectedOptionIndex == qData.correctAnswerIndex)
         {
             Debug.Log("BENAR! Player menjawab opsi index: " + selectedOptionIndex);
+            if (AudioManager.Instance != null)
+            {
+                AudioManager.Instance.PlayCorrect();
+            }
+
             if (optionImages[selectedOptionIndex] != null && correctOptionSprite != null)
                 optionImages[selectedOptionIndex].sprite = correctOptionSprite;
 
@@ -381,6 +391,11 @@ public class QuizManager : MonoBehaviour
         else
         {
             Debug.Log("SALAH! Player menjawab opsi index: " + selectedOptionIndex + ", Kunci jawaban: " + qData.correctAnswerIndex);
+            if (AudioManager.Instance != null)
+            {
+                AudioManager.Instance.PlayWrong();
+            }
+
             if (optionImages[selectedOptionIndex] != null && wrongOptionSprite != null)
                 optionImages[selectedOptionIndex].sprite = wrongOptionSprite;
 
@@ -456,6 +471,11 @@ public class QuizManager : MonoBehaviour
         {
             finishedQuizPanel.SetActive(true);
 
+            if (AudioManager.Instance != null)
+            {
+                AudioManager.Instance.PlayDone();
+            }
+
             // Pop-up Animation
             Transform frame = finishedQuizPanel.transform.Find("Frame");
             if (frame != null)
@@ -468,6 +488,15 @@ public class QuizManager : MonoBehaviour
                 finishedQuizPanel.transform.localScale = Vector3.zero;
                 finishedQuizPanel.transform.DOScale(originalFinishedScale, 0.4f).SetEase(Ease.OutBack);
             }
+        }
+    }
+
+    // Dipanggil jika user klik Batal/Tutup pada panel konfirmasi
+    public void CancelConfirmation()
+    {
+        if (quizConfirmationPanel != null)
+        {
+            quizConfirmationPanel.SetActive(false);
         }
     }
 
