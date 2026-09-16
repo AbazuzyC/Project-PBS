@@ -152,8 +152,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SettingsUi
   _audioMixer: {fileID: 0}
-  _musicToggle: {fileID: 0}
-  _sfxToggle: {fileID: 0}
+  _musicToggle: {fileID: 1563478952}
+  _sfxToggle: {fileID: 184362551}
 --- !u!114 &24802118
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -329,8 +329,8 @@ GameObject:
   - component: {fileID: 174953955}
   - component: {fileID: 174953954}
   - component: {fileID: 174953953}
-  - component: {fileID: 174953956}
   - component: {fileID: 174953957}
+  - component: {fileID: 174953958}
   m_Layer: 0
   m_Name: Tahap 2
   m_TagString: Untagged
@@ -379,13 +379,25 @@ MonoBehaviour:
   OnTargetFound:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1973668617}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 174953957}
+        m_TargetAssemblyTypeName: ARModelAnimator, Assembly-CSharp
+        m_MethodName: PopOut
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2102057005}
+        m_TargetAssemblyTypeName: ARInfoManager, Assembly-CSharp
+        m_MethodName: ShowARInfo
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000, guid: 45fff69d8a494b6c8322458932273f20, type: 2}
+          m_ObjectArgumentAssemblyTypeName: TopicCategorySO, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -393,7 +405,31 @@ MonoBehaviour:
         m_CallState: 2
   OnTargetLost:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2102057005}
+        m_TargetAssemblyTypeName: ARInfoManager, Assembly-CSharp
+        m_MethodName: HideARInfo
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 174953957}
+        m_TargetAssemblyTypeName: ARModelAnimator, Assembly-CSharp
+        m_MethodName: Shrink
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &174953954
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -420,7 +456,7 @@ MonoBehaviour:
   mMotionHint: 1
   mTrackingOptimization: 0
   mTrackingOptimizationNeedsUpgrade: 0
-  mPreview: {fileID: 174953956}
+  mPreview: {fileID: 174953958}
 --- !u!4 &174953955
 Transform:
   m_ObjectHideFlags: 0
@@ -437,7 +473,21 @@ Transform:
   - {fileID: 543450653167610469}
   m_Father: {fileID: 2001462811}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &174953956
+--- !u!114 &174953957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 174953951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b93fc355ffbdd8e478603d4268b000b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ARModelAnimator
+  modelTransform: {fileID: 543450653167610469}
+  popOutDuration: 0.5
+--- !u!114 &174953958
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -456,20 +506,6 @@ MonoBehaviour:
   mCastedBehaviour: {fileID: 174953954}
   mMeshFilter: {fileID: 0}
   mMeshRenderer: {fileID: 0}
---- !u!114 &174953957
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 174953951}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b93fc355ffbdd8e478603d4268b000b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ARModelAnimator
-  modelTransform: {fileID: 543450653167610469}
-  popOutDuration: 0.5
 --- !u!1 &184362549
 GameObject:
   m_ObjectHideFlags: 0
@@ -649,6 +685,7 @@ MonoBehaviour:
   scaleTo: 0.9
   duration: 0.15
   easeType: 6
+  playClickSound: 1
 --- !u!114 &204002251
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1309,8 +1346,8 @@ GameObject:
   - component: {fileID: 438189166}
   - component: {fileID: 438189165}
   - component: {fileID: 438189164}
-  - component: {fileID: 438189167}
   - component: {fileID: 438189168}
+  - component: {fileID: 438189169}
   m_Layer: 0
   m_Name: Tahap 3
   m_TagString: Untagged
@@ -1359,13 +1396,25 @@ MonoBehaviour:
   OnTargetFound:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1973668617}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 438189168}
+        m_TargetAssemblyTypeName: ARModelAnimator, Assembly-CSharp
+        m_MethodName: PopOut
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2102057005}
+        m_TargetAssemblyTypeName: ARInfoManager, Assembly-CSharp
+        m_MethodName: ShowARInfo
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000, guid: dd8dd084e7814f7d8a5453178f749f0b, type: 2}
+          m_ObjectArgumentAssemblyTypeName: TopicCategorySO, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1373,7 +1422,31 @@ MonoBehaviour:
         m_CallState: 2
   OnTargetLost:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2102057005}
+        m_TargetAssemblyTypeName: ARInfoManager, Assembly-CSharp
+        m_MethodName: HideARInfo
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 438189168}
+        m_TargetAssemblyTypeName: ARModelAnimator, Assembly-CSharp
+        m_MethodName: Shrink
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &438189165
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1400,7 +1473,7 @@ MonoBehaviour:
   mMotionHint: 1
   mTrackingOptimization: 0
   mTrackingOptimizationNeedsUpgrade: 0
-  mPreview: {fileID: 438189167}
+  mPreview: {fileID: 438189169}
 --- !u!4 &438189166
 Transform:
   m_ObjectHideFlags: 0
@@ -1417,7 +1490,21 @@ Transform:
   - {fileID: 1500917252}
   m_Father: {fileID: 2001462811}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &438189167
+--- !u!114 &438189168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 438189163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b93fc355ffbdd8e478603d4268b000b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ARModelAnimator
+  modelTransform: {fileID: 1500917252}
+  popOutDuration: 0.5
+--- !u!114 &438189169
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1436,20 +1523,6 @@ MonoBehaviour:
   mCastedBehaviour: {fileID: 438189165}
   mMeshFilter: {fileID: 0}
   mMeshRenderer: {fileID: 0}
---- !u!114 &438189168
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 438189163}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b93fc355ffbdd8e478603d4268b000b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ARModelAnimator
-  modelTransform: {fileID: 1500917252}
-  popOutDuration: 0.5
 --- !u!4 &572994916 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 58433ae317b148b4eb6599d09c9075b2, type: 3}
@@ -1770,6 +1843,7 @@ MonoBehaviour:
   scaleTo: 0.9
   duration: 0.15
   easeType: 6
+  playClickSound: 1
 --- !u!114 &953616554
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2096,6 +2170,7 @@ MonoBehaviour:
   scaleTo: 0.9
   duration: 0.15
   easeType: 6
+  playClickSound: 1
 --- !u!114 &1026445685
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2475,8 +2550,8 @@ GameObject:
   - component: {fileID: 1165520655}
   - component: {fileID: 1165520654}
   - component: {fileID: 1165520653}
-  - component: {fileID: 1165520656}
   - component: {fileID: 1165520657}
+  - component: {fileID: 1165520658}
   m_Layer: 0
   m_Name: Tahap 4
   m_TagString: Untagged
@@ -2525,13 +2600,25 @@ MonoBehaviour:
   OnTargetFound:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1973668617}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 1165520657}
+        m_TargetAssemblyTypeName: ARModelAnimator, Assembly-CSharp
+        m_MethodName: PopOut
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2102057005}
+        m_TargetAssemblyTypeName: ARInfoManager, Assembly-CSharp
+        m_MethodName: ShowARInfo
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000, guid: 6c24a4b35f4142628e3bf92605e44276, type: 2}
+          m_ObjectArgumentAssemblyTypeName: TopicCategorySO, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -2539,7 +2626,31 @@ MonoBehaviour:
         m_CallState: 2
   OnTargetLost:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2102057005}
+        m_TargetAssemblyTypeName: ARInfoManager, Assembly-CSharp
+        m_MethodName: HideARInfo
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1165520657}
+        m_TargetAssemblyTypeName: ARModelAnimator, Assembly-CSharp
+        m_MethodName: Shrink
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1165520654
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2566,7 +2677,7 @@ MonoBehaviour:
   mMotionHint: 1
   mTrackingOptimization: 0
   mTrackingOptimizationNeedsUpgrade: 0
-  mPreview: {fileID: 1165520656}
+  mPreview: {fileID: 1165520658}
 --- !u!4 &1165520655
 Transform:
   m_ObjectHideFlags: 0
@@ -2583,7 +2694,21 @@ Transform:
   - {fileID: 572994916}
   m_Father: {fileID: 2001462811}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1165520656
+--- !u!114 &1165520657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1165520652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b93fc355ffbdd8e478603d4268b000b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ARModelAnimator
+  modelTransform: {fileID: 572994916}
+  popOutDuration: 0.5
+--- !u!114 &1165520658
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2602,20 +2727,6 @@ MonoBehaviour:
   mCastedBehaviour: {fileID: 1165520654}
   mMeshFilter: {fileID: 0}
   mMeshRenderer: {fileID: 0}
---- !u!114 &1165520657
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1165520652}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b93fc355ffbdd8e478603d4268b000b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ARModelAnimator
-  modelTransform: {fileID: 572994916}
-  popOutDuration: 0.5
 --- !u!1 &1205645423
 GameObject:
   m_ObjectHideFlags: 0
@@ -2856,6 +2967,7 @@ MonoBehaviour:
   scaleTo: 0.9
   duration: 0.15
   easeType: 6
+  playClickSound: 1
 --- !u!114 &1264704438
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3360,6 +3472,7 @@ MonoBehaviour:
   scaleTo: 0.9
   duration: 0.15
   easeType: 6
+  playClickSound: 1
 --- !u!114 &1796067071
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3507,6 +3620,7 @@ MonoBehaviour:
   scaleTo: 0.9
   duration: 0.15
   easeType: 6
+  playClickSound: 1
 --- !u!114 &1800529251
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3695,8 +3809,8 @@ GameObject:
   - component: {fileID: 1973668621}
   - component: {fileID: 1973668620}
   - component: {fileID: 1973668619}
-  - component: {fileID: 1973668622}
   - component: {fileID: 1973668623}
+  - component: {fileID: 1973668624}
   m_Layer: 0
   m_Name: Tahap 1
   m_TagString: Untagged
@@ -3762,7 +3876,7 @@ MonoBehaviour:
         m_MethodName: ShowARInfo
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 11400000, guid: 00d26f85787b9a443b3896f952910b09, type: 2}
+          m_ObjectArgument: {fileID: 11400000, guid: 6184f3a9eac049d2a9332dc49c3a873d, type: 2}
           m_ObjectArgumentAssemblyTypeName: TopicCategorySO, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -3822,7 +3936,7 @@ MonoBehaviour:
   mMotionHint: 1
   mTrackingOptimization: 0
   mTrackingOptimizationNeedsUpgrade: 0
-  mPreview: {fileID: 1973668622}
+  mPreview: {fileID: 1973668624}
 --- !u!4 &1973668621
 Transform:
   m_ObjectHideFlags: 0
@@ -3839,7 +3953,21 @@ Transform:
   - {fileID: 746842883026165027}
   m_Father: {fileID: 2001462811}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1973668622
+--- !u!114 &1973668623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1973668617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b93fc355ffbdd8e478603d4268b000b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ARModelAnimator
+  modelTransform: {fileID: 746842883026165027}
+  popOutDuration: 0.5
+--- !u!114 &1973668624
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3858,20 +3986,6 @@ MonoBehaviour:
   mCastedBehaviour: {fileID: 1973668620}
   mMeshFilter: {fileID: 0}
   mMeshRenderer: {fileID: 0}
---- !u!114 &1973668623
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1973668617}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b93fc355ffbdd8e478603d4268b000b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ARModelAnimator
-  modelTransform: {fileID: 746842883026165027}
-  popOutDuration: 0.5
 --- !u!1 &2001462810
 GameObject:
   m_ObjectHideFlags: 0
@@ -3962,6 +4076,7 @@ MonoBehaviour:
   scaleTo: 0.9
   duration: 0.15
   easeType: 6
+  playClickSound: 1
 --- !u!114 &2009777061
 MonoBehaviour:
   m_ObjectHideFlags: 0

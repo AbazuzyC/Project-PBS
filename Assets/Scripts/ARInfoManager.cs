@@ -19,6 +19,8 @@ public class ARInfoManager : MonoBehaviour
 
     private TopicCategorySO currentTopic;
     private int currentPageIndex = 0;
+    private int lastNextFrame = -1;
+    private int lastPrevFrame = -1;
 
     private void Start()
     {
@@ -28,8 +30,17 @@ public class ARInfoManager : MonoBehaviour
             arInfoPanel.SetActive(false);
         }
 
-        if (nextButton != null) nextButton.onClick.AddListener(NextPage);
-        if (prevButton != null) prevButton.onClick.AddListener(PrevPage);
+        // Hindari double-registration jika tombol sudah terhubung di Inspector OnClick
+        if (nextButton != null)
+        {
+            nextButton.onClick.RemoveListener(NextPage);
+            nextButton.onClick.AddListener(NextPage);
+        }
+        if (prevButton != null)
+        {
+            prevButton.onClick.RemoveListener(PrevPage);
+            prevButton.onClick.AddListener(PrevPage);
+        }
     }
 
     /// <summary>
@@ -38,7 +49,7 @@ public class ARInfoManager : MonoBehaviour
     /// </summary>
     public void ShowARInfo(TopicCategorySO topic)
     {
-        if (topic == null || topic.pages.Count == 0) return;
+        if (topic == null || topic.pages == null || topic.pages.Count == 0) return;
 
         currentTopic = topic;
         currentPageIndex = 0;
@@ -76,11 +87,11 @@ public class ARInfoManager : MonoBehaviour
 
     private void UpdatePageUI()
     {
-        if (currentTopic == null || currentTopic.pages.Count == 0) return;
+        if (currentTopic == null || currentTopic.pages == null || currentTopic.pages.Count == 0) return;
 
         PageData pData = currentTopic.pages[currentPageIndex];
 
-        // Update Teks
+        // Update Teks (Mode 3D hanya menampilkan teks judul & materi, tanpa image 2D)
         if (pageTitleText != null) pageTitleText.text = pData.pageTitle;
         if (contentText != null) contentText.text = pData.contentText;
 
@@ -91,7 +102,11 @@ public class ARInfoManager : MonoBehaviour
 
     public void NextPage()
     {
-        if (currentTopic != null && currentPageIndex < currentTopic.pages.Count - 1)
+        // Mencegah double call di frame yang sama (misal terdaftar di Inspector OnClick dan AddListener sekaligus)
+        if (Time.frameCount == lastNextFrame) return;
+        lastNextFrame = Time.frameCount;
+
+        if (currentTopic != null && currentTopic.pages != null && currentPageIndex < currentTopic.pages.Count - 1)
         {
             currentPageIndex++;
             UpdatePageUI();
@@ -100,6 +115,10 @@ public class ARInfoManager : MonoBehaviour
 
     public void PrevPage()
     {
+        // Mencegah double call di frame yang sama
+        if (Time.frameCount == lastPrevFrame) return;
+        lastPrevFrame = Time.frameCount;
+
         if (currentTopic != null && currentPageIndex > 0)
         {
             currentPageIndex--;

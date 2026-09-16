@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2afeb8b78a9a6fa45bee177580090816, type: 3}
+  m_Name: Tahap 1 - Telur
+  m_EditorClassIdentifier: Assembly-CSharp::TopicCategorySO
+  topicName: 'TAHAP 1: TELUR'
+  pages:
+  - pageTitle: 'Tahap 1: Mengenal Telur'
+    contentText: "Kupu-kupu betina meletakkan telurnya di bawah permukaan daun tanaman.\n\nTujuannya adalah agar telur tersembunyi dari pemangsa seperti burung, serta terlindung dari terik matahari dan air hujan."
+    pageImage: {fileID: 0}
+  - pageTitle: 'Tahap 1: Fakta Telur'
+    contentText: "Telur kupu-kupu berukuran sangat kecil seperti butiran pasir dan menempel sangat kuat menggunakan lem alami khusus.\n\nDalam waktu 3 sampai 5 hari, telur ini akan siap menetas menjadi ulat kecil yang lapar!"
+    pageImage: {fileID: 0}

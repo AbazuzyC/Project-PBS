@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2afeb8b78a9a6fa45bee177580090816, type: 3}
+  m_Name: Kupu Kupu
+  m_EditorClassIdentifier: Assembly-CSharp::TopicCategorySO
+  topicName: Kupu Kupu
+  pages:
+  - pageTitle: 'Tahap 1: Telur'
+    contentText: "Kupu-kupu dewasa betina meletakkan telurnya di bawah permukaan daun
+      tanaman agar terlindungi dari sinar matahari dan pemangsa.\n\nTelur kupu-kupu
+      berukuran sangat kecil dan menempel erat pada daun menggunakan zat perekat khusus.
+      Diperlukan waktu sekitar 3 sampai 5 hari hingga telur siap menetas menjadi ulat
+      kecil."
+    pageImage: {fileID: 0}
+  - pageTitle: 'Tahap 2: Ulat (Larva)'
+    contentText: "Setelah menetas dari telur, keluarlah ulat atau larva. Ulat memiliki
+      nafsu makan yang sangat besar dan terus memakan dedaunan segar di sekitarnya
+      tanpa henti.\n\nKarena tubuhnya tumbuh sangat cepat, ulat akan berganti kulit
+      (molting) sebanyak 4 hingga 5 kali. Setelah kenyang dan cukup besar, ulat akan
+      bersiap untuk beristirahat."
+    pageImage: {fileID: 0}
+  - pageTitle: 'Tahap 3: Kepompong (Pupa)'
+    contentText: "Ulat akan mencari tempat yang aman seperti di ranting atau balik
+      daun, lalu membungkus dirinya menjadi kepompong atau krisalis.\n\nDi dalam kepompong,
+      ulat beristirahat dan tidak makan sama sekali. Tubuh ulat mengalami perubahan
+      luar biasa (metamorfosis) selama 7 hingga 20 hari sampai membentuk sayap dan
+      tubuh kupu-kupu yang baru."
+    pageImage: {fileID: 0}
+  - pageTitle: 'Tahap 4: Kupu-Kupu (Imago)'
+    contentText: "Kepompong akhirnya terbuka dan keluarlah kupu-kupu dewasa yang sangat
+      cantik! Saat baru keluar, sayapnya masih terlipat dan basah.\n\nKupu-kupu akan
+      memompa cairan ke sayapnya lalu menjemurnya di bawah sinar matahari sampai kering
+      dan kuat. Setelah itu, kupu-kupu siap terbang bebas menghisap nektar madu dari
+      bunga!"
+    pageImage: {fileID: 0}

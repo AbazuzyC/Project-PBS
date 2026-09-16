@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2afeb8b78a9a6fa45bee177580090816, type: 3}
+  m_Name: Tahap 4 - Kupu Kupu
+  m_EditorClassIdentifier: Assembly-CSharp::TopicCategorySO
+  topicName: 'TAHAP 4: KUPU-KUPU (IMAGO)'
+  pages:
+  - pageTitle: 'Tahap 4: Lahir Kupu-Kupu'
+    contentText: "Setelah proses perubahan selesai, kepompong akan terbuka dan keluarlah kupu-kupu dewasa yang sangat cantik!\n\nSaat pertama keluar, sayapnya masih basah dan terlipat rapat di samping tubuhnya."
+    pageImage: {fileID: 0}
+  - pageTitle: 'Tahap 4: Terbang Bebas'
+    contentText: "Kupu-kupu memompa cairan ke sayapnya dan menjemurnya di bawah sinar matahari hingga kering dan kuat.\n\nSetelah itu, kupu-kupu siap terbang bebas dari bunga ke bunga menghisap nektar madu yang manis!"
+    pageImage: {fileID: 0}

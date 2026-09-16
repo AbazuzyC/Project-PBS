@@ -14,54 +14,43 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TopicCategorySO
   topicName: Kupu Kupu
   pages:
-  - pageTitle: Tahap 1
-    contentText: '*Lorem ipsum dolor sit amet*, consectetur adipiscing elit, sed
-      do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-      veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-      dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-      sunt in culpa qui officia deserunt mollit anim id est laborum.
+  - pageTitle: 'Tahap 1: Telur'
+    contentText: 'Kupu-kupu dewasa betina meletakkan telurnya di bawah permukaan
+      daun tanaman agar terlindungi dari sinar matahari dan pemangsa.
 
-      Lorem
-      ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-      ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-      ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-      in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-      Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-      mollit anim id est laborum.'
-    pageImage: {fileID: 21300000, guid: e7595f8815dd651439746ccc60108ac8, type: 3}
-  - pageTitle: Tahap 2
-    contentText: '*Lorem ipsum dolor sit amet*, consectetur adipiscing elit, sed
-      do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-      veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-      dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-      sunt in culpa qui officia deserunt mollit anim id est laborum.
 
-      Lorem
-      ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-      ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-      ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-      in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-      Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-      mollit anim id est laborum.'
+      Telur
+      kupu-kupu berukuran sangat kecil dan menempel erat pada daun menggunakan zat
+      perekat khusus. Diperlukan waktu sekitar 3 sampai 5 hari hingga telur siap
+      menetas menjadi ulat kecil.'
     pageImage: {fileID: 0}
-  - pageTitle: Tahap 3
-    contentText: '*Lorem ipsum dolor sit amet*, consectetur adipiscing elit, sed
-      do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-      veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-      dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-      sunt in culpa qui officia deserunt mollit anim id est laborum.
+  - pageTitle: 'Tahap 2: Ulat (Larva)'
+    contentText: 'Setelah menetas dari telur, keluarlah ulat atau larva. Ulat memiliki
+      nafsu makan yang sangat besar dan terus memakan dedaunan segar di sekitarnya
+      tanpa henti.
 
-      Lorem
-      ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-      ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-      ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-      in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-      Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-      mollit anim id est laborum.'
+
+      Karena tubuhnya tumbuh sangat cepat, ulat akan berganti
+      kulit (molting) sebanyak 4 hingga 5 kali. Setelah kenyang dan cukup besar,
+      ulat akan bersiap untuk beristirahat.'
     pageImage: {fileID: 0}
-  - pageTitle: 
-    contentText: 
+  - pageTitle: 'Tahap 3: Kepompong (Pupa)'
+    contentText: 'Ulat akan mencari tempat yang aman seperti di ranting atau balik
+      daun, lalu membungkus dirinya menjadi kepompong atau krisalis.
+
+
+      Di dalam
+      kepompong, ulat beristirahat dan tidak makan sama sekali. Tubuh ulat mengalami
+      perubahan luar biasa (metamorfosis) selama 7 hingga 20 hari sampai membentuk
+      sayap dan tubuh kupu-kupu yang baru.'
+    pageImage: {fileID: 0}
+  - pageTitle: 'Tahap 4: Kupu-Kupu (Imago)'
+    contentText: 'Kepompong akhirnya terbuka dan keluarlah kupu-kupu dewasa yang
+      sangat cantik! Saat baru keluar, sayapnya masih terlipat dan basah.
+
+
+      Kupu-kupu
+      akan memompa cairan ke sayapnya lalu menjemurnya di bawah sinar matahari sampai
+      kering dan kuat. Setelah itu, kupu-kupu siap terbang bebas menghisap nektar
+      madu dari bunga!'
     pageImage: {fileID: 0}

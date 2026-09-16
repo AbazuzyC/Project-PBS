@@ -12,21 +12,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a0a9ba25ce85a544a9a8d34f3c67830, type: 3}
   m_Name: Kupu Kupu
   m_EditorClassIdentifier: Assembly-CSharp::QuizScriptable
-  categoryName: Belalang
+  categoryName: Kupu Kupu
   questions:
-  - questionText: Berapa banyak sayap kupu kupu
+  - questionText: Berapa banyak sayap yang dimiliki oleh seekor kupu-kupu?
     questionImage: {fileID: 21300000, guid: 6667b7e4ef0e0d3409fcf2a860be5c5d, type: 3}
     options:
-    - 2
-    - b
-    - c
-    - d
+    - 4 sayap (2 pasang)
+    - 2 sayap (1 pasang)
+    - 6 sayap (3 pasang)
+    - Tidak memiliki sayap
     correctAnswerIndex: 0
-  - questionText: Sebeleum jadi kupu kup dia apa dulu
+  - questionText: Sebelum berubah menjadi kupu-kupu dewasa, ulat pada gambar di atas
+      akan membungkus dirinya menjadi apa?
     questionImage: {fileID: 21300000, guid: e7595f8815dd651439746ccc60108ac8, type: 3}
     options:
-    - Ulat
-    - b
-    - c
-    - d
+    - Telur
+    - Kepompong (Pupa)
+    - Kupu-kupu kecil
+    - Belalang
     correctAnswerIndex: 1
+  - questionText: Di bagian manakah induk kupu-kupu biasanya meletakkan telurnya?
+    questionImage: {fileID: 0}
+    options:
+    - Di dalam tanah
+    - Di bawah permukaan daun
+    - Di dalam genangan air
+    - Di atas batu kali
+    correctAnswerIndex: 1
+  - questionText: Makanan utama yang dihisap oleh kupu-kupu dewasa dari bunga adalah...
+    questionImage: {fileID: 21300000, guid: 6667b7e4ef0e0d3409fcf2a860be5c5d, type: 3}
+    options:
+    - Nektar (sari bunga)
+    - Daun hijau
+    - Biji-bijian
+    - Buah kelapa
+    correctAnswerIndex: 0
+  - questionText: Urutan daur hidup (metamorfosis) kupu-kupu yang benar adalah...
+    questionImage: {fileID: 0}
+    options:
+    - Telur -> Kepompong -> Ulat -> Kupu-kupu
+    - Ulat -> Telur -> Kepompong -> Kupu-kupu
+    - Telur -> Ulat -> Kepompong -> Kupu-kupu
+    - Kepompong -> Telur -> Ulat -> Kupu-kupu
+    correctAnswerIndex: 2
