@@ -15,8 +15,8 @@ MonoBehaviour:
   topicName: 'TAHAP 1: TELUR'
   pages:
   - pageTitle: 'Tahap 1: Mengenal Telur'
-    contentText: "Kupu-kupu betina meletakkan telurnya di bawah permukaan daun tanaman.\n\nTujuannya adalah agar telur tersembunyi dari pemangsa seperti burung, serta terlindung dari terik matahari dan air hujan."
+    contentText: "Kupu-kupu betina meletakkan telurnya di <b>bawah permukaan daun</b> tanaman inang.\n\nTujuannya agar telur <b>tersembunyi dari pemangsa</b> (seperti burung) serta terlindung dari terik matahari dan air hujan."
     pageImage: {fileID: 0}
   - pageTitle: 'Tahap 1: Fakta Telur'
-    contentText: "Telur kupu-kupu berukuran sangat kecil seperti butiran pasir dan menempel sangat kuat menggunakan lem alami khusus.\n\nDalam waktu 3 sampai 5 hari, telur ini akan siap menetas menjadi ulat kecil yang lapar!"
+    contentText: "Telur berukuran sangat kecil <b>sebesar ujung jarum</b> dan menempel sangat kuat memakai lem alami khusus.\n\nDalam waktu <b>3 hingga 7 hari</b>, embrio ulat di dalam telur akan siap menetas menjadi larva kecil yang aktif!"
     pageImage: {fileID: 0}

@@ -15,8 +15,8 @@ MonoBehaviour:
   topicName: 'TAHAP 4: KUPU-KUPU (IMAGO)'
   pages:
   - pageTitle: 'Tahap 4: Lahir Kupu-Kupu'
-    contentText: "Setelah proses perubahan selesai, kepompong akan terbuka dan keluarlah kupu-kupu dewasa yang sangat cantik!\n\nSaat pertama keluar, sayapnya masih basah dan terlipat rapat di samping tubuhnya."
+    contentText: "Kepompong memudar menjadi transparan, lalu kupu-kupu memecahkan cangkang dan keluar merangkak.\n\nSayapnya yang masih basah dan terlipat dipompa cairan tubuh lalu dijemur di udara bebas hingga <b>kering dan kaku</b>."
     pageImage: {fileID: 0}
   - pageTitle: 'Tahap 4: Terbang Bebas'
-    contentText: "Kupu-kupu memompa cairan ke sayapnya dan menjemurnya di bawah sinar matahari hingga kering dan kuat.\n\nSetelah itu, kupu-kupu siap terbang bebas dari bunga ke bunga menghisap nektar madu yang manis!"
+    contentText: "Mulut pengunyah ulat telah berganti menjadi belalai penghisap (<b>probosis</b>) untuk menghisap nektar bunga.\n\nKupu-kupu dewasa siap <b>terbang mencari pasangan</b> untuk bereproduksi dan memulai siklus hidup baru."
     pageImage: {fileID: 0}

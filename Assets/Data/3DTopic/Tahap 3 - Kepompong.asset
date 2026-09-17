@@ -15,8 +15,8 @@ MonoBehaviour:
   topicName: 'TAHAP 3: KEPOMPONG (PUPA)'
   pages:
   - pageTitle: 'Tahap 3: Rumah Kepompong'
-    contentText: "Ulat mencari ranting atau dahan tanaman yang kokoh, lalu menggantungkan tubuhnya secara terbalik.\n\nUlat mengeluarkan benang sutra alami untuk membungkus dirinya menjadi cangkang pelindung yang disebut kepompong (krisalis)."
+    contentText: "Ulat menganyam bantalan benang sutra, lalu menggantung terbalik membentuk <b>posisi huruf \"J\"</b>.\n\nUlat melepas kulit lamanya untuk terakhir kali dan membentuk cangkang pelindung keras yang disebut <b>chrysalis</b>."
     pageImage: {fileID: 0}
   - pageTitle: 'Tahap 3: Keajaiban Perubahan'
-    contentText: "Di dalam kepompong, ulat beristirahat dan tidak makan sama sekali.\n\nTubuh ulat mengalami perubahan bentuk yang ajaib (metamorfosis) selama 7 sampai 20 hari hingga terbentuk sayap dan tubuh kupu-kupu yang baru."
+    contentText: "Di balik cangkang chrysalis, terjadi proses <b>histolisis</b> (peleburan jaringan larva) dan <b>histogenesis</b> (perakitan organ dewasa).\n\nProses perombakan menakjubkan ini berlangsung sekitar <b>1 hingga 2 minggu</b>."
     pageImage: {fileID: 0}

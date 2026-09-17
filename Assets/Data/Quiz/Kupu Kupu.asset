@@ -14,44 +14,83 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::QuizScriptable
   categoryName: Kupu Kupu
   questions:
-  - questionText: Berapa banyak sayap yang dimiliki oleh seekor kupu-kupu?
-    questionImage: {fileID: 21300000, guid: 6667b7e4ef0e0d3409fcf2a860be5c5d, type: 3}
+  - questionText: "Dalam biologi, apa definisi yang paling tepat untuk <b>metamorfosis</b>?"
+    questionImage: {fileID: 0}
     options:
-    - 4 sayap (2 pasang)
-    - 2 sayap (1 pasang)
-    - 6 sayap (3 pasang)
-    - Tidak memiliki sayap
-    correctAnswerIndex: 0
-  - questionText: Sebelum berubah menjadi kupu-kupu dewasa, ulat pada gambar di atas
-      akan membungkus dirinya menjadi apa?
-    questionImage: {fileID: 21300000, guid: e7595f8815dd651439746ccc60108ac8, type: 3}
+    - Pertambahan ukuran tubuh seiring usia bertambah
+    - Pergantian kulit hewan untuk membersihkan kotoran
+    - Perubahan bentuk & struktur tubuh drastis setelah menetas
+    - Perpindahan hewan dari satu habitat ke habitat lain
+    correctAnswerIndex: 2
+  - questionText: "Hormon apakah yang bertugas mempertahankan karakteristik fisik <b>fase muda</b> pada serangga?"
+    questionImage: {fileID: 0}
+    options:
+    - Hormon Ekdison
+    - Hormon Adrenalin
+    - Hormon Juvenil
+    - Hormon Estrogen
+    correctAnswerIndex: 2
+  - questionText: "Proses <b>penghancuran jaringan tubuh larva</b> secara masif menjadi cairan kaya nutrisi disebut..."
+    questionImage: {fileID: 0}
+    options:
+    - Histogenesis
+    - Molting
+    - Holometabola
+    - Histolisis
+    correctAnswerIndex: 3
+  - questionText: "Istilah ilmiah untuk proses <b>metamorfosis sempurna</b> adalah..."
+    questionImage: {fileID: 0}
+    options:
+    - Hemimetabola
+    - Holometabola
+    - Histogenesis
+    - Imago
+    correctAnswerIndex: 1
+  - questionText: "Ciri mutlak yang membedakan <b>metamorfosis sempurna</b> dan tidak sempurna adalah adanya fase..."
+    questionImage: {fileID: 0}
     options:
     - Telur
-    - Kepompong (Pupa)
-    - Kupu-kupu kecil
-    - Belalang
-    correctAnswerIndex: 1
-  - questionText: Di bagian manakah induk kupu-kupu biasanya meletakkan telurnya?
-    questionImage: {fileID: 0}
+    - Larva / Nimfa
+    - Pupa (Kepompong)
+    - Imago (Dewasa)
+    correctAnswerIndex: 2
+  - questionText: "Pada daur hidup kupu-kupu, fase manakah yang sering dijuluki sebagai tahap <b>\"mesin makan\"</b>?"
+    questionImage: {fileID: 21300000, guid: e7595f8815dd651439746ccc60108ac8, type: 3}
     options:
-    - Di dalam tanah
-    - Di bawah permukaan daun
-    - Di dalam genangan air
-    - Di atas batu kali
+    - Fase Telur
+    - Fase Larva (Ulat)
+    - Fase Pupa (Kepompong)
+    - Fase Imago (Kupu-kupu)
     correctAnswerIndex: 1
-  - questionText: Makanan utama yang dihisap oleh kupu-kupu dewasa dari bunga adalah...
+  - questionText: "Alat mulut kupu-kupu dewasa yang berfungsi untuk <b>menghisap nektar bunga</b> disebut..."
     questionImage: {fileID: 21300000, guid: 6667b7e4ef0e0d3409fcf2a860be5c5d, type: 3}
     options:
-    - Nektar (sari bunga)
-    - Daun hijau
-    - Biji-bijian
-    - Buah kelapa
-    correctAnswerIndex: 0
-  - questionText: Urutan daur hidup (metamorfosis) kupu-kupu yang benar adalah...
+    - Antena
+    - Imaginal discs
+    - Chrysalis
+    - Probosis
+    correctAnswerIndex: 3
+  - questionText: "Berapa jumlah <b>tahapan hidup</b> yang dilewati oleh hewan dengan metamorfosis tidak sempurna?"
     questionImage: {fileID: 0}
     options:
-    - Telur -> Kepompong -> Ulat -> Kupu-kupu
-    - Ulat -> Telur -> Kepompong -> Kupu-kupu
-    - Telur -> Ulat -> Kepompong -> Kupu-kupu
-    - Kepompong -> Telur -> Ulat -> Kupu-kupu
+    - 2 tahapan
+    - 3 tahapan
+    - 4 tahapan
+    - 5 tahapan
+    correctAnswerIndex: 1
+  - questionText: "Hewan muda metamorfosis tidak sempurna yang mirip dewasa namun belum bersayap disebut..."
+    questionImage: {fileID: 0}
+    options:
+    - Larva
+    - Pupa
+    - Nimfa
+    - Chrysalis
     correctAnswerIndex: 2
+  - questionText: "Berikut adalah contoh hewan yang mengalami <b>metamorfosis tidak sempurna</b>, <i>kecuali</i>..."
+    questionImage: {fileID: 0}
+    options:
+    - Katak
+    - Belalang
+    - Kecoa
+    - Capung
+    correctAnswerIndex: 0

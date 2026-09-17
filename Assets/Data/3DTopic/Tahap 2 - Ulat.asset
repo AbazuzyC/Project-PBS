@@ -15,8 +15,8 @@ MonoBehaviour:
   topicName: 'TAHAP 2: ULAT (LARVA)'
   pages:
   - pageTitle: 'Tahap 2: Si Pemakan Daun'
-    contentText: "Setelah telur menetas, keluarlah ulat atau larva.\n\nUlat memiliki nafsu makan yang sangat besar! Mereka memakan dedaunan hijau di sekitarnya tanpa henti siang dan malam agar tubuhnya cepat besar."
+    contentText: "Setelah menetas, ulat langsung memakan sisa cangkang telurnya sendiri.\n\nFase ini dijuluki <b>\"Mesin Makan\"</b> karena ulat terus melahap dedaunan hijau siang dan malam tanpa henti untuk mengumpulkan nutrisi pertumbuhan."
     pageImage: {fileID: 0}
   - pageTitle: 'Tahap 2: Berganti Kulit'
-    contentText: "Karena tubuhnya membesar dengan sangat cepat, ulat akan berganti kulit (molting) sebanyak 4 hingga 5 kali.\n\nSetelah tubuhnya cukup besar dan gemuk, ulat akan mencari tempat aman untuk beristirahat."
+    contentText: "Karena kulit luarnya tidak elastis, ulat harus berganti kulit (<b>molting</b>) sebanyak <b>4 hingga 5 kali</b>.\n\nFase pertumbuhan ulat ini memakan waktu sekitar <b>2 hingga 4 minggu</b> sebelum ulat siap beristirahat."
     pageImage: {fileID: 0}

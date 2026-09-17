@@ -10,6 +10,7 @@ public class MaterialManager : MonoBehaviour
     public TextMeshProUGUI contentText;    // Teks paragraf materi
     public Image pageImage;                // Gambar materi
     public TextMeshProUGUI pageCounterText;// Teks bawah: "1 DARI 4"
+    public ScrollRect contentScrollRect;   // ScrollRect untuk scroll materi jika teks panjang
     
     [Header("Button References")]
     public Button prevButton;
@@ -36,6 +37,14 @@ public class MaterialManager : MonoBehaviour
         pageTitleText.text = pData.pageTitle;
         contentText.text = pData.contentText;
         pageCounterText.text = (currentPageIndex + 1) + " DARI " + currentTopic.pages.Count;
+
+        // Reset scroll position ke paling atas setiap kali ganti halaman
+        if (contentScrollRect != null)
+        {
+            Canvas.ForceUpdateCanvases();
+            contentScrollRect.verticalNormalizedPosition = 1f;
+            contentScrollRect.velocity = Vector2.zero;
+        }
 
         // Logic Gambar vs Tanpa Gambar
         if (pData.pageImage != null) 
