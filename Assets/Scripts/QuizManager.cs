@@ -11,6 +11,15 @@ public class QuizManager : MonoBehaviour
     public TextMeshProUGUI questionText;
     public Image questionImage;
     
+    [Header("Question Layout Settings")]
+    [Tooltip("Posisi & ukuran teks saat ADA gambar")]
+    public Vector2 textPosWithImage = new Vector2(-1.8294f, -70.5f);
+    public Vector2 textSizeWithImage = new Vector2(971.6394f, 130.687f);
+
+    [Tooltip("Posisi & ukuran teks saat TIDAK ADA gambar (mengisi bagian tengah frame)")]
+    public Vector2 textPosNoImage = new Vector2(-1.8294f, -12f);
+    public Vector2 textSizeNoImage = new Vector2(971.6394f, 520f);
+    
     [Header("Quiz Confirmation UI")]
     public GameObject quizConfirmationPanel; // Panel pop-up konfirmasi
     public TextMeshProUGUI textTotalSoalJawab; // Teks "8/10" di konfirmasi
@@ -54,6 +63,18 @@ public class QuizManager : MonoBehaviour
 
     private void Awake()
     {
+        // Inisialisasi default layout teks soal jika belum diset
+        if (textPosWithImage == Vector2.zero && questionText != null)
+        {
+            textPosWithImage = questionText.rectTransform.anchoredPosition;
+            textSizeWithImage = questionText.rectTransform.sizeDelta;
+        }
+        if (textSizeNoImage == Vector2.zero)
+        {
+            textPosNoImage = new Vector2(-1.8294f, -12f);
+            textSizeNoImage = new Vector2(971.6394f, 520f);
+        }
+
         // Simpan scale asli panel konfirmasi kalau ada
         if (quizConfirmationPanel != null)
         {
@@ -146,7 +167,7 @@ public class QuizManager : MonoBehaviour
         if (questionCounterText != null) questionCounterText.text = (currentQuestionIndex + 1) + " / " + currentQuiz.questions.Count;
         if (questionText != null) questionText.text = qData.questionText;
         
-        // Atur gambar
+        // Atur gambar & tata letak teks soal (dinamis seperti di Materi)
         if (qData.questionImage != null && questionImage != null) {
             questionImage.sprite = qData.questionImage;
             
@@ -171,10 +192,28 @@ public class QuizManager : MonoBehaviour
             }
 
             questionImage.rectTransform.sizeDelta = new Vector2(targetWidth, targetHeight);
-
+            questionImage.rectTransform.anchoredPosition = new Vector2(0f, 8.9f);
             questionImage.gameObject.SetActive(true);
-        } else if (questionImage != null) {
-            questionImage.gameObject.SetActive(false);
+
+            // Jika ada gambar: teks soal berada di posisi bawah dengan area kompak
+            if (questionText != null)
+            {
+                questionText.rectTransform.anchoredPosition = textPosWithImage;
+                questionText.rectTransform.sizeDelta = textSizeWithImage;
+                questionText.verticalAlignment = VerticalAlignmentOptions.Middle;
+            }
+        } else {
+            if (questionImage != null) {
+                questionImage.gameObject.SetActive(false);
+            }
+
+            // Jika TIDAK ada gambar: teks soal menempati seluruh area tengah secara proporsional (layout seperti di Materi)
+            if (questionText != null)
+            {
+                questionText.rectTransform.anchoredPosition = textPosNoImage;
+                questionText.rectTransform.sizeDelta = textSizeNoImage;
+                questionText.verticalAlignment = VerticalAlignmentOptions.Middle;
+            }
         }
 
         int answeredIndex = playerAnswers != null && currentQuestionIndex < playerAnswers.Length ? playerAnswers[currentQuestionIndex] : -1;

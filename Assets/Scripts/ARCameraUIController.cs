@@ -7,10 +7,14 @@ public class ARCameraUIController : MonoBehaviour
 {
     private UIDocument _uiDocument;
     
-    // UI Elements
+    // UI Toolkit Elements
     private Button _backButton;
     private Button _flashlightButton;
     private VisualElement _scanLine;
+
+    // UGUI Fallback Elements
+    private UnityEngine.UI.Toggle _uguiFlashToggle;
+    private UnityEngine.UI.Button _uguiBackButton;
 
     // Flashlight State
     private bool _isFlashlightOn = false;
@@ -25,26 +29,55 @@ public class ARCameraUIController : MonoBehaviour
         _uiDocument = GetComponent<UIDocument>();
         if (_uiDocument == null)
         {
-            Debug.LogError("ARCameraUIController requires a UIDocument component on the same GameObject.");
-            return;
-        }
-        
-        var root = _uiDocument.rootVisualElement;
-        
-        _backButton = root.Q<Button>("BackButton");
-        _flashlightButton = root.Q<Button>("FlashlightButton");
-        _scanLine = root.Q<VisualElement>("ScanLine");
-
-        // Back Button Event
-        if (_backButton != null)
-        {
-            _backButton.clicked += OnBackClicked;
+            _uiDocument = GetComponentInChildren<UIDocument>();
         }
 
-        // Flashlight Button Event
-        if (_flashlightButton != null)
+        if (_uiDocument != null)
         {
-            _flashlightButton.clicked += OnFlashlightClicked;
+            var root = _uiDocument.rootVisualElement;
+            if (root != null)
+            {
+                _backButton = root.Q<Button>("BackButton");
+                _flashlightButton = root.Q<Button>("FlashlightButton");
+                _scanLine = root.Q<VisualElement>("ScanLine");
+
+                if (_backButton != null) _backButton.clicked += OnBackClicked;
+                if (_flashlightButton != null) _flashlightButton.clicked += OnFlashlightClicked;
+            }
+        }
+        else
+        {
+            // Scene uses standard Unity Canvas (UGUI) instead of UI Toolkit
+            SetupUGUIFallbacks();
+        }
+    }
+
+    private void SetupUGUIFallbacks()
+    {
+        // Try finding UGUI FlashButton / Toggle in the scene
+        var toggles = FindObjectsByType<UnityEngine.UI.Toggle>(FindObjectsSortMode.None);
+        foreach (var t in toggles)
+        {
+            if (t.gameObject.name.ToLower().Contains("flash"))
+            {
+                _uguiFlashToggle = t;
+                _uguiFlashToggle.onValueChanged.RemoveListener(OnUGUIFlashToggleChanged);
+                _uguiFlashToggle.onValueChanged.AddListener(OnUGUIFlashToggleChanged);
+                break;
+            }
+        }
+
+        // Try finding UGUI BackButton in the scene if not already handled
+        var buttons = FindObjectsByType<UnityEngine.UI.Button>(FindObjectsSortMode.None);
+        foreach (var b in buttons)
+        {
+            if (b.gameObject.name.ToLower().Contains("back"))
+            {
+                _uguiBackButton = b;
+                _uguiBackButton.onClick.RemoveListener(OnBackClicked);
+                _uguiBackButton.onClick.AddListener(OnBackClicked);
+                break;
+            }
         }
     }
 
@@ -52,6 +85,15 @@ public class ARCameraUIController : MonoBehaviour
     {
         if (_backButton != null) _backButton.clicked -= OnBackClicked;
         if (_flashlightButton != null) _flashlightButton.clicked -= OnFlashlightClicked;
+
+        if (_uguiFlashToggle != null)
+        {
+            _uguiFlashToggle.onValueChanged.RemoveListener(OnUGUIFlashToggleChanged);
+        }
+        if (_uguiBackButton != null)
+        {
+            _uguiBackButton.onClick.RemoveListener(OnBackClicked);
+        }
     }
 
     private System.Collections.IEnumerator Start()
@@ -59,98 +101,38 @@ public class ARCameraUIController : MonoBehaviour
         // Wait one frame for the scene to be fully loaded
         yield return null;
 
-        InitializeVuforia();
+        EnsureVuforiaRunning();
     }
 
-    private void InitializeVuforia()
+    private void EnsureVuforiaRunning()
     {
-        // The correct assembly names for Vuforia in this project:
-        //   - "Vuforia.Unity.Engine" for VuforiaBehaviour, ImageTargetBehaviour, etc.
-        //   - "VuforiaScripts" for DefaultObserverEventHandler, etc.
-        string[] assemblyNames = new string[]
-        {
-            "Vuforia.Unity.Engine",  // Actual assembly in this project
-            "Vuforia.Unity.Engine.dll",
-            "VuforiaEngine",         // Fallback for other Vuforia versions
-            "VuforiaScripts"
-        };
-
-        bool initialized = false;
-
-        // --- Approach 1: VuforiaApplication.Instance.Initialize() ---
-        foreach (string asmName in assemblyNames)
-        {
-            try
-            {
-                System.Type vuforiaAppType = System.Type.GetType("Vuforia.VuforiaApplication, " + asmName);
-                if (vuforiaAppType != null)
-                {
-                    var instanceProp = vuforiaAppType.GetProperty("Instance");
-                    if (instanceProp != null)
-                    {
-                        var instance = instanceProp.GetValue(null);
-                        if (instance != null)
-                        {
-                            var initMethod = vuforiaAppType.GetMethod("Initialize");
-                            if (initMethod != null)
-                            {
-                                initMethod.Invoke(instance, null);
-                                Debug.Log($"Vuforia initialized via VuforiaApplication.Instance.Initialize() [assembly: {asmName}]");
-                                initialized = true;
-                                break;
-                            }
-                        }
-                    }
-                }
-            }
-            catch (System.Exception e)
-            {
-                Debug.LogWarning($"VuforiaApplication init attempt failed for assembly '{asmName}': {e.Message}");
-            }
-        }
-
-        // --- Approach 2: Find and enable VuforiaBehaviour in the scene ---
-        // This is the most reliable way — VuforiaBehaviour on the AR Camera handles everything
+        // Vuforia is automatically initialized by VuforiaConfiguration / VuforiaEditorAutoInit.
+        // We only ensure the VuforiaBehaviour on the ARCamera is enabled if present.
         try
         {
-            foreach (string asmName in assemblyNames)
+            System.Type vuforiaBehaviourType = FindVuforiaType("Vuforia.VuforiaBehaviour");
+            if (vuforiaBehaviourType != null)
             {
-                System.Type vuforiaBehaviourType = System.Type.GetType("Vuforia.VuforiaBehaviour, " + asmName);
-                if (vuforiaBehaviourType != null)
+                var vuforiaBehaviour = FindFirstObjectByType(vuforiaBehaviourType) as Behaviour;
+                if (vuforiaBehaviour != null)
                 {
-                    // Find all VuforiaBehaviour components in the scene
-                    var vuforiaBehaviour = FindFirstObjectByType(vuforiaBehaviourType) as Behaviour;
-                    if (vuforiaBehaviour != null)
+                    if (!vuforiaBehaviour.enabled)
                     {
-                        if (!vuforiaBehaviour.enabled)
-                        {
-                            vuforiaBehaviour.enabled = true;
-                            Debug.Log($"VuforiaBehaviour found and enabled [assembly: {asmName}]");
-                        }
-                        else
-                        {
-                            Debug.Log($"VuforiaBehaviour already enabled [assembly: {asmName}]");
-                        }
-                        initialized = true;
-                        break;
+                        vuforiaBehaviour.enabled = true;
+                        Debug.Log("ARCameraUIController: VuforiaBehaviour found and enabled.");
                     }
                 }
             }
         }
         catch (System.Exception e)
         {
-            Debug.LogWarning("VuforiaBehaviour enable attempt failed: " + e.Message);
-        }
-
-        if (!initialized)
-        {
-            Debug.LogError("Failed to initialize Vuforia! No valid Vuforia types found in any assembly.");
+            Debug.LogWarning("ARCameraUIController: EnsureVuforiaRunning failed: " + e.Message);
         }
     }
 
     private void Update()
     {
-        // Animate the Scan Line moving up and down
+        // Animate the UI Toolkit Scan Line moving up and down if present
         if (_scanLine != null && _scanLine.parent != null)
         {
             float maxDistance = _scanLine.parent.resolvedStyle.height - _scanLine.resolvedStyle.height - 20f;
@@ -175,53 +157,101 @@ public class ARCameraUIController : MonoBehaviour
 
     private void OnBackClicked()
     {
-        // Change "MainMenu" to your actual main menu scene name if different
         SceneManager.LoadScene("MainMenu");
+    }
+
+    private void OnUGUIFlashToggleChanged(bool isOn)
+    {
+        _isFlashlightOn = isOn;
+        SetFlashlight(_isFlashlightOn);
     }
 
     private void OnFlashlightClicked()
     {
         _isFlashlightOn = !_isFlashlightOn;
-        
-        // Use reflection to toggle Vuforia flashlight so it works across different Vuforia versions 
-        // without causing compile errors if the namespace changes.
-        string[] assemblyNames = new string[]
-        {
-            "Vuforia.Unity.Engine",
-            "VuforiaEngine",
-            "VuforiaScripts"
-        };
+        SetFlashlight(_isFlashlightOn);
+    }
 
-        foreach (string asmName in assemblyNames)
+    private void SetFlashlight(bool turnOn)
+    {
+        // 1. Try Vuforia 10+ CameraDevice via VuforiaBehaviour
+        try
         {
-            try 
+            System.Type behaviourType = FindVuforiaType("Vuforia.VuforiaBehaviour");
+            if (behaviourType != null)
             {
-                System.Type cameraDeviceType = System.Type.GetType("Vuforia.CameraDevice, " + asmName);
-                if (cameraDeviceType != null)
+                var instanceProp = behaviourType.GetProperty("Instance");
+                if (instanceProp != null)
                 {
-                    var instanceProp = cameraDeviceType.GetProperty("Instance");
-                    if (instanceProp != null)
+                    var behaviourInstance = instanceProp.GetValue(null);
+                    if (behaviourInstance != null)
                     {
-                        var instance = instanceProp.GetValue(null);
-                        if (instance != null)
+                        var cameraDeviceProp = behaviourType.GetProperty("CameraDevice");
+                        if (cameraDeviceProp != null)
                         {
-                            var method = cameraDeviceType.GetMethod("SetFlashTorchMode");
-                            if (method != null)
+                            var cameraDeviceInstance = cameraDeviceProp.GetValue(behaviourInstance);
+                            if (cameraDeviceInstance != null)
                             {
-                                bool success = (bool)method.Invoke(instance, new object[] { _isFlashlightOn });
-                                Debug.Log("Flashlight toggled: " + _isFlashlightOn + " Success: " + success);
-                                return;
+                                var setFlashMethod = cameraDeviceInstance.GetType().GetMethod("SetFlash", new System.Type[] { typeof(bool) });
+                                if (setFlashMethod != null)
+                                {
+                                    bool success = (bool)setFlashMethod.Invoke(cameraDeviceInstance, new object[] { turnOn });
+                                    Debug.Log($"[ARCameraUIController] Flashlight set: {turnOn}, success: {success}");
+                                    return;
+                                }
                             }
                         }
                     }
                 }
             }
-            catch (System.Exception e)
+        }
+        catch (System.Exception ex)
+        {
+            Debug.LogWarning($"[ARCameraUIController] SetFlash error: {ex.Message}");
+        }
+
+        // 2. Fallback: Legacy Vuforia CameraDevice.Instance.SetFlashTorchMode
+        try
+        {
+            System.Type cameraDeviceType = FindVuforiaType("Vuforia.CameraDevice");
+            if (cameraDeviceType != null)
             {
-                Debug.LogWarning($"Flashlight toggle attempt failed for assembly '{asmName}': {e.Message}");
+                var instanceProp = cameraDeviceType.GetProperty("Instance");
+                if (instanceProp != null)
+                {
+                    var instance = instanceProp.GetValue(null);
+                    if (instance != null)
+                    {
+                        var method = cameraDeviceType.GetMethod("SetFlashTorchMode");
+                        if (method != null)
+                        {
+                            bool success = (bool)method.Invoke(instance, new object[] { turnOn });
+                            Debug.Log($"[ARCameraUIController] Legacy flashlight set: {turnOn}, success: {success}");
+                            return;
+                        }
+                    }
+                }
             }
         }
-        
-        Debug.LogWarning("Could not toggle flashlight using reflection. Vuforia API might be missing or changed.");
+        catch (System.Exception ex)
+        {
+            Debug.LogWarning($"[ARCameraUIController] Legacy torch error: {ex.Message}");
+        }
+
+        Debug.Log("[ARCameraUIController] Flashlight mode toggled (webcam/editor simulation).");
+    }
+
+    private static System.Type FindVuforiaType(string typeFullName)
+    {
+        foreach (var asm in System.AppDomain.CurrentDomain.GetAssemblies())
+        {
+            try
+            {
+                var type = asm.GetType(typeFullName);
+                if (type != null) return type;
+            }
+            catch {}
+        }
+        return null;
     }
 }
