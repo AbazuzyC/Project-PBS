@@ -2461,7 +2461,7 @@ MonoBehaviour:
   defaultOptionSprite: {fileID: 21300000, guid: 4e7556997769de64bb72173074c5b2dd, type: 3}
   correctOptionSprite: {fileID: 21300000, guid: 681368e4504bae34fba2c8d33680baed, type: 3}
   wrongOptionSprite: {fileID: 21300000, guid: 73bf1f24dd66c1e47baff1be00670db3, type: 3}
-  nextButtonSprite: {fileID: 21300000, guid: e269a4255b5467a429decf4f97cef72c, type: 3}
+  nextButtonSprite: {fileID: 21300000, guid: 1d8c5a236deaafc419cf3bb78f6fec98, type: 3}
   doneButtonSprite: {fileID: 21300000, guid: 17e0700346d733e4ca52cecc2e4f95a4, type: 3}
   prevButton: {fileID: 549900427}
   nextButton: {fileID: 1260340645}
@@ -2723,7 +2723,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &521640994
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -75,6 +75,15 @@ public class QuizManager : MonoBehaviour
             textSizeNoImage = new Vector2(971.6394f, 520f);
         }
 
+        // Sinkronisasi sprite tombol next: gunakan sprite dari QuizNext (Yellow_Next_Button) jika nextButtonSprite belum diset atau masih menunjuk ke NextGreenButton
+        if (nextButton != null && nextButton.image != null && nextButton.image.sprite != null)
+        {
+            if (nextButtonSprite == null || (nextButtonSprite != null && nextButtonSprite.name == "NextGreenButton"))
+            {
+                nextButtonSprite = nextButton.image.sprite;
+            }
+        }
+
         // Simpan scale asli panel konfirmasi kalau ada
         if (quizConfirmationPanel != null)
         {
@@ -572,4 +581,17 @@ public class QuizManager : MonoBehaviour
             BackToQuizSelection();
         }
     }
+
+#if UNITY_EDITOR
+    private void OnValidate()
+    {
+        if (nextButton != null && nextButton.image != null && nextButton.image.sprite != null)
+        {
+            if (nextButtonSprite == null || (nextButtonSprite != null && nextButtonSprite.name == "NextGreenButton"))
+            {
+                nextButtonSprite = nextButton.image.sprite;
+            }
+        }
+    }
+#endif
 }
