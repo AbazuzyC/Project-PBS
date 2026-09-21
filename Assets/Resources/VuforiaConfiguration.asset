@@ -42,7 +42,7 @@ MonoBehaviour:
     videoBackgroundEnabled: 1
   deviceTracker:
     autoStartTracker: 0
-    arcoreRequirement: 1
+    arcoreRequirement: 0
     autoImportArcore: 0
     thirdPartyARCoreClientDetected: 0
   playmode:
@@ -50,7 +50,6 @@ MonoBehaviour:
     playModeType: 0
     mSimulatorInputActionAsset: {fileID: -944628639613478452, guid: eae7022f5cfd04e8189b1f372421b225, type: 3}
   webcam:
-    deviceNameSetInEditor: VGA WebCam
     renderTextureLayer: 30
   packageInformation:
     ARFoundationVersion: 
