@@ -33,13 +33,26 @@ public class DeveloperProfileUI : MonoBehaviour
     }
     void ShowProfile()
     {
+        if (developerList == null || developerList.Length == 0) return;
+        _indexNow = Mathf.Clamp(_indexNow, 0, developerList.Length - 1);
         DeveloperProfile data = developerList[_indexNow];
-        _image.sprite = data.profilePic;
-        _txtName.text = "Nama: " + data.developerName;
-        _txtRegNumber.text = "NIP: " + data.regNumber;
-        _txtEmail.text = "Email: " + data.email;
-        _txtMajor.text = data.major;
-        _txtDescription.text = data.description;
+        if (data == null) return;
+
+        if (_image != null)
+        {
+            _image.sprite = data.profilePic;
+            _image.enabled = (data.profilePic != null);
+        }
+
+        if (_txtName != null) _txtName.text = "Nama: " + data.developerName;
+        if (_txtRegNumber != null)
+        {
+            string label = (!string.IsNullOrEmpty(data.regNumber) && data.regNumber.Trim().Length > 12) ? "NIP: " : "NIM: ";
+            _txtRegNumber.text = label + data.regNumber;
+        }
+        if (_txtEmail != null) _txtEmail.text = "Email: " + data.email;
+        if (_txtMajor != null) _txtMajor.text = data.major;
+        if (_txtDescription != null) _txtDescription.text = data.description;
 
         if(nextButton != null)
             nextButton.SetActive(_indexNow < developerList.Length - 1);

@@ -17148,6 +17148,10 @@ MonoBehaviour:
   developerList:
   - {fileID: 11400000, guid: 1995cee1cb1535d41b6eca91da53c48b, type: 2}
   - {fileID: 11400000, guid: 1d3a40272ccd2b84ab899248517c7468, type: 2}
+  - {fileID: 11400000, guid: 455861f1a17147b78ca1daefe49f663e, type: 2}
+  - {fileID: 11400000, guid: 8a9bf711c784406888033b0c69c192b1, type: 2}
+  - {fileID: 11400000, guid: 9c35f4dfeaf944d3b5dd52c793377bdd, type: 2}
+  - {fileID: 11400000, guid: a38126795c104c9e9bef1401151aea0c, type: 2}
   _image: {fileID: 3835162602783424017}
   _txtName: {fileID: 1185604925972544293}
   _txtRegNumber: {fileID: 7648492567891107189}
